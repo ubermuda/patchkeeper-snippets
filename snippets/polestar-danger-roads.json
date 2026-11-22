@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "polestar-danger-roads",
+  "name": "Polestar: keep to the roads in zones above your level",
+  "version": "1.0.0",
+  "author": "github:ubermuda",
+  "description": "In a zone at least 4 levels above you, the GPS keeps to the roads: off-road ground costs 3 times more there, so a walk follows a road up to about 3.75 times longer than a shortcut across country, and leaves it only for the last stretch to its target. Zones at or below your level route as before. It also applies in the zone you start in and the one you're walking to (Polestar's zone danger leaves those out, so you're never steered around your own quest zone; this gives them a token danger, just enough to keep to their roads). Turn it off in Patch Keeper to get Polestar's own routing back.",
+  "targets": [
+    { "addon": "Polestar_Nav", "tested": ["0.4.2.1"] },
+    { "addon": "Polestar", "tested": ["0.4.2.1"] }
+  ],
+  "operations": [
+    {
+      "op": "insertAfter",
+      "file": "Polestar_Nav/Routing/Path.lua",
+      "find": "local Safe = { refusal = \"no safe walking route\" }",
+      "text": "\n-- Keep to the roads in zones above the player's level (Patch Keeper snippet polestar-danger-roads): in a\n-- chunk whose zone danger is above 1, a step onto ground other than road costs 3 times more (by kind byte).\n-- On Safe rather than a new main-chunk local: this file is near Lua's 200-local limit.\nSafe.offRoad = {}\nfor b = 0, 255 do Safe.offRoad[b] = (CLS[b] or 0) % 8 == 1 and 1 or 3 end"
+    },
+    {
+      "op": "replace",
+      "file": "Polestar_Nav/Routing/Path.lua",
+      "find": "gv = gu + length * cs * WM[kb] * WS[kb] * dz[floor(floor(cell / C) * 16 / C) * 16 + floor(cell % C * 16 / C) + 1]",
+      "text": "local zm = dz[floor(floor(cell / C) * 16 / C) * 16 + floor(cell % C * 16 / C) + 1]\n\t\t\tgv = gu + length * cs * WM[kb] * WS[kb] * (zm > 1 and zm * Safe.offRoad[kb] or zm)"
+    },
+    {
+      "op": "replace",
+      "file": "Polestar_Nav/Routing/PathGrid.lua",
+      "find": "m = m * dangerAt(k, node)",
+      "text": "local zm = dangerAt(k, node)\n\t\t\t\tm = m * (zm > 1 and c % 8 ~= 1 and zm * 3 or zm)"
+    },
+    {
+      "op": "replace",
+      "file": "Polestar_Nav/Routing/PathGrid.lua",
+      "find": "m = m * dangerAt(PK[i], PN[i])",
+      "text": "local zm = dangerAt(PK[i], PN[i])\n\t\t\t\t\t\tm = m * (zm > 1 and c % 8 ~= 1 and zm * 3 or zm)"
+    },
+    {
+      "op": "insertBefore",
+      "file": "Polestar/Nav/Danger.lua",
+      "find": "\t\tsort(ids)",
+      "text": "\t\t-- The walk's own start and goal zones, when above the player: a token multiplier, so the router keeps to\n\t\t-- their roads (Patch Keeper snippet polestar-danger-roads) without steering the walk around them.\n\t\tfor _, id in ipairs({ startZone, goalZone }) do\n\t\t\tif id and not t[id] and Danger.Mult(level, id) > 1 then t[id], ids[#ids + 1] = 1.001, id end\n\t\tend\n"
+    }
+  ]
+}

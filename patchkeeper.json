@@ -4,6 +4,7 @@
   "snippets": [
     "snippets/polestar-rare-fallback.json",
     "snippets/polestar-guide-rare-steps.json",
-    "snippets/flbis-daylight.json"
+    "snippets/flbis-daylight.json",
+    "snippets/polestar-danger-roads.json"
   ]
 }
