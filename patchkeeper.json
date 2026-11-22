@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "name": "WoW Forever fixes",
+  "snippets": [
+    "snippets/polestar-rare-fallback.json",
+    "snippets/polestar-guide-rare-steps.json",
+    "snippets/flbis-daylight.json"
+  ]
+}

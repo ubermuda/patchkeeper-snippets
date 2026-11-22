@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "id": "polestar-guide-rare-steps",
+  "name": "Polestar: guide steps that sent you to a rare",
+  "version": "1.0.0",
+  "author": "github:ubermuda",
+  "description": "Five written guide steps named a rare mob as the item's source, though ordinary mobs nearby drop it too: Chen's Empty Keg (Horde), Claim Rackmore's Treasure! (both), Rhapsody's Kalimdor Kocktail and Flute of Xavaric (Alliance). They now name the ordinary mobs, and every mob that drops the item is on the step's target list. Waypoints are unchanged.",
+  "targets": [
+    { "addon": "Polestar_Guides_Horde", "tested": ["0.4.1.1", "0.4.2.1"] },
+    { "addon": "Polestar_Guides_Alliance", "tested": ["0.4.1.1", "0.4.2.1"] }
+  ],
+  "operations": [
+    {
+      "op": "replace",
+      "expect": "all",
+      "file": "Polestar_Guides_Horde/Guides.lua",
+      "find": "from = \"Thunderstomp\", fromKind = \"npc\", fromRank = 4, fromId = 5832, fromNpcs = { { npc = 5832, npcName = \"Thunderstomp\" } }",
+      "text": "from = \"Stormsnout\", fromKind = \"npc\", fromId = 3240, fromAlso = \"Thunderhead\", fromAlsoId = 3239, fromNpcs = { { npc = 3238, npcName = \"Stormhide\" }, { npc = 3239, npcName = \"Thunderhead\" }, { npc = 3240, npcName = \"Stormsnout\" }, { npc = 3473, npcName = \"Owatanka\" }, { npc = 5832, npcName = \"Thunderstomp\" } }"
+    },
+    {
+      "op": "replace",
+      "expect": "all",
+      "file": "Polestar_Guides_Horde/Guides.lua",
+      "find": "from = \"Accursed Slitherblade\", fromKind = \"npc\", fromRank = 4, fromId = 14229, fromNpcs = { { npc = 14229, npcName = \"Accursed Slitherblade\" } }",
+      "text": "from = \"Slitherblade Naga\", fromKind = \"npc\", fromId = 4711, fromAlso = \"Slitherblade Warrior\", fromAlsoId = 4713, fromNpcs = { { npc = 4711, npcName = \"Slitherblade Naga\" }, { npc = 4713, npcName = \"Slitherblade Warrior\" }, { npc = 4712, npcName = \"Slitherblade Sorceress\" }, { npc = 4714, npcName = \"Slitherblade Myrmidon\" }, { npc = 4718, npcName = \"Slitherblade Oracle\" }, { npc = 4715, npcName = \"Slitherblade Razortail\" }, { npc = 4716, npcName = \"Slitherblade Tidehunter\" }, { npc = 4719, npcName = \"Slitherblade Sea Witch\" }, { npc = 14229, npcName = \"Accursed Slitherblade\" } }"
+    },
+    {
+      "op": "replace",
+      "expect": "all",
+      "file": "Polestar_Guides_Alliance/Guides.lua",
+      "find": "from = \"Accursed Slitherblade\", fromKind = \"npc\", fromRank = 4, fromId = 14229, fromNpcs = { { npc = 14229, npcName = \"Accursed Slitherblade\" } }",
+      "text": "from = \"Slitherblade Naga\", fromKind = \"npc\", fromId = 4711, fromAlso = \"Slitherblade Warrior\", fromAlsoId = 4713, fromNpcs = { { npc = 4711, npcName = \"Slitherblade Naga\" }, { npc = 4713, npcName = \"Slitherblade Warrior\" }, { npc = 4712, npcName = \"Slitherblade Sorceress\" }, { npc = 4714, npcName = \"Slitherblade Myrmidon\" }, { npc = 4718, npcName = \"Slitherblade Oracle\" }, { npc = 4715, npcName = \"Slitherblade Razortail\" }, { npc = 4716, npcName = \"Slitherblade Tidehunter\" }, { npc = 4719, npcName = \"Slitherblade Sea Witch\" }, { npc = 14229, npcName = \"Accursed Slitherblade\" } }"
+    },
+    {
+      "op": "replace",
+      "expect": "all",
+      "file": "Polestar_Guides_Alliance/Guides.lua",
+      "find": "from = \"Old Grizzlegut\", fromKind = \"npc\", fromRank = 4, fromId = 5352, fromNpcs = { { npc = 5352, npcName = \"Old Grizzlegut\" } }",
+      "text": "from = \"Ironfur Patriarch\", fromKind = \"npc\", fromId = 5274, fromAlso = \"Grizzled Ironfur Bear\", fromAlsoId = 5272, fromNpcs = { { npc = 5274, npcName = \"Ironfur Patriarch\" }, { npc = 5272, npcName = \"Grizzled Ironfur Bear\" }, { npc = 5268, npcName = \"Ironfur Bear\" }, { npc = 5352, npcName = \"Old Grizzlegut\" } }"
+    },
+    {
+      "op": "replace",
+      "expect": "all",
+      "file": "Polestar_Guides_Alliance/Guides.lua",
+      "find": "from = \"Alshirr Banebreath\", fromKind = \"npc\", fromRank = 4, fromId = 14340, fromNpcs = { { npc = 14340, npcName = \"Alshirr Banebreath\" } }",
+      "text": "from = \"Jadefire Felsworn\", fromKind = \"npc\", fromId = 7109, fromAlso = \"Jadefire Satyr\", fromAlsoId = 7105, fromNpcs = { { npc = 7105, npcName = \"Jadefire Satyr\" }, { npc = 7106, npcName = \"Jadefire Rogue\" }, { npc = 7107, npcName = \"Jadefire Trickster\" }, { npc = 7108, npcName = \"Jadefire Betrayer\" }, { npc = 7109, npcName = \"Jadefire Felsworn\" }, { npc = 7110, npcName = \"Jadefire Shadowstalker\" }, { npc = 7111, npcName = \"Jadefire Hellcaller\" }, { npc = 14340, npcName = \"Alshirr Banebreath\" } }"
+    }
+  ]
+}

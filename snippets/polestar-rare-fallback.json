@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "id": "polestar-rare-fallback",
+  "name": "Polestar: rare mobs only as a fallback drop source",
+  "version": "1.0.0",
+  "author": "github:ubermuda",
+  "description": "Polestar's drop data counts few kills of rare mobs, so a rare often shows an inflated drop chance (Old Vicejaw: 80% Grizzled Bear Heart, against 46% and 39% for the ordinary bears). Guide steps then named the rare as where to farm and pointed the arrow at it. With this, a rare is only used when nothing else drops the item, the way Polestar already treats elites. Affects about 70 quest objectives (A Recipe For Death, Wild Hearts, the Snickerfang Jowl and Wild Leather quests...).",
+  "targets": [
+    { "addon": "Polestar", "tested": ["0.4.1.1", "0.4.2.1"] }
+  ],
+  "operations": [
+    {
+      "op": "insertAfter",
+      "file": "Polestar/Lookup/Guide.lua",
+      "find": "\tif kind == \"npc\" and (rec.elite or rec.boss) then return false end",
+      "text": "\n\tif kind == \"npc\" and rec.rare then return false end"
+    }
+  ]
+}
